@@ -1,0 +1,4 @@
+sample,fastq_1,fastq_2
+A01,/home/adigenova/digenoma-lab-longreadstats/reads/tmp1.fastq.gz,
+A02,/home/adigenova/digenoma-lab-longreadstats/reads/tmp2.fastq.gz,
+A03,/home/adigenova/digenoma-lab-longreadstats/reads/tmp3.fastq.gz,

@@ -40,7 +40,7 @@ On release, automated continuous integration tests run the pipeline on a full-si
    <!-- TODO nf-core: Update the example "typical command" below used to run the pipeline -->
 
    ```bash
-   nextflow run digenoma-lab/longreadstats --input samplesheet.csv --outdir <OUTDIR> --genome fasta -profile <leftraru>
+   nextflow run digenoma-lab/longreadstats --input samplesheet.csv --outdir <OUTDIR> --fasta genoma.fa -profile <leftraru>
    ```
  4.1 The input file should be defined as follow:
 

@@ -1,8 +1,7 @@
 ## Introduction
 
-<!-- TODO nf-core: Write a 1-2 sentence summary of what data the pipeline is for and what it does -->
 
-**digenoma-lab/longreadstats** is a bioinformatics best-practice analysis pipeline for pipeline for computing long-read statistics.
+**digenoma-lab/longreadstats** is a bioinformatics best-practice analysis pipeline  for computing long-read statistics with Nanoplot.
 
 The pipeline is built using [Nextflow](https://www.nextflow.io), a workflow tool to run tasks across multiple compute infrastructures in a very portable manner. It uses Docker/Singularity containers making installation trivial and results highly reproducible. The [Nextflow DSL2](https://www.nextflow.io/docs/latest/dsl2.html) implementation of this pipeline uses one container per process which makes it much easier to maintain and update software dependencies. Where possible, these processes have been submitted to and installed from [nf-core/modules](https://github.com/nf-core/modules) in order to make them available to all nf-core pipelines, and to everyone within the Nextflow community!
 
@@ -14,7 +13,7 @@ On release, automated continuous integration tests run the pipeline on a full-si
 
 <!-- TODO nf-core: Fill in short bullet-pointed list of the default steps in the pipeline -->
 
-1. Read QC ([`FastQC`](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/))
+1. Read QC ([`Nanoplot`](https://github.com/wdecoster/NanoPlot))
 2. Present QC for raw reads ([`MultiQC`](http://multiqc.info/))
 
 ## Quick Start
@@ -26,12 +25,12 @@ On release, automated continuous integration tests run the pipeline on a full-si
 3. Download the pipeline and test it on a minimal dataset with a single command:
 
    ```bash
-   nextflow run digenoma-lab/longreadstats -profile test,YOURPROFILE --outdir <OUTDIR>
+   nextflow run digenoma-lab/longreadstats -profile leftraru --outdir <OUTDIR>
    ```
 
    Note that some form of configuration will be needed so that Nextflow knows how to fetch the required software. This is usually done in the form of a config profile (`YOURPROFILE` in the example command above). You can chain multiple config profiles in a comma-separated string.
 
-   > - The pipeline comes with config profiles called `docker`, `singularity`, `podman`, `shifter`, `charliecloud` and `conda` which instruct the pipeline to use the named tool for software management. For example, `-profile test,docker`.
+   > - The pipeline comes with config profiles called `docker`, `singularity`, `podman`, `shifter`, `charliecloud`, `leftraru` and `conda` which instruct the pipeline to use the named tool for software management. For example, `-profile leftraru`.
    > - Please check [nf-core/configs](https://github.com/nf-core/configs#documentation) to see if a custom config file to run nf-core pipelines already exists for your Institute. If so, you can simply use `-profile <institute>` in your command. This will enable either `docker` or `singularity` and set the appropriate execution settings for your local compute environment.
    > - If you are using `singularity`, please use the [`nf-core download`](https://nf-co.re/tools/#downloading-pipelines-for-offline-use) command to download images first, before running the pipeline. Setting the [`NXF_SINGULARITY_CACHEDIR` or `singularity.cacheDir`](https://www.nextflow.io/docs/latest/singularity.html?#singularity-docker-hub) Nextflow options enables you to store and re-use the images from a central location for future pipeline runs.
    > - If you are using `conda`, it is highly recommended to use the [`NXF_CONDA_CACHEDIR` or `conda.cacheDir`](https://www.nextflow.io/docs/latest/conda.html) settings to store the environments in a central location for future pipeline runs.
@@ -41,8 +40,16 @@ On release, automated continuous integration tests run the pipeline on a full-si
    <!-- TODO nf-core: Update the example "typical command" below used to run the pipeline -->
 
    ```bash
-   nextflow run digenoma-lab/longreadstats --input samplesheet.csv --outdir <OUTDIR> --genome GRCh37 -profile <docker/singularity/podman/shifter/charliecloud/conda/institute>
+   nextflow run digenoma-lab/longreadstats --input samplesheet.csv --outdir <OUTDIR> --genome fasta -profile <leftraru>
    ```
+ 4.1 The input file should be defined as follow:
+
+```bash
+sample,fastq_1,fastq_2
+A01,/home/adigenova/digenoma-lab-longreadstats/reads/tmp1.fastq.gz,
+A02,/home/adigenova/digenoma-lab-longreadstats/reads/tmp2.fastq.gz,
+A03,/home/adigenova/digenoma-lab-longreadstats/reads/tmp3.fastq.gz,	
+```
 
 ## Credits
 
